@@ -32,8 +32,12 @@ else
 fi
 
 if [[ ${withVolumes} == "yes" ]]; then
-   [[ $(docker volume ls | grep jovyan-data) ]] && echo "Docker volume with jovyan data is found. Removing it.."; docker volume rm -f jovyan-data
-   [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found. Removing it.."; docker volume rm -f jovyan-work 
-   [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found. Removing it.."; docker volume rm -f jovyan-tmp
+
+   dataVolume="jovyan-data-${instanceName}"
+   workVolume="jovyan-work-${instanceName}"
+   tmpVolume="jovyan-tmp-${instanceName}"
+   [[ $(docker volume ls | grep $dataVolume) ]] && echo "Docker volume with jovyan data is found. Removing it.."; docker volume rm -f $dataVolume
+   [[ $(docker volume ls | grep $workVolume) ]] && echo "Docker volume with jovyan work is found. Removing it.."; docker volume rm -f $workVolume 
+   [[ $(docker volume ls | grep $tmpVolume) ]] && echo "Docker volume with jovyan tmp data is found. Removing it.."; docker volume rm -f $tmpVolume
 fi
 
