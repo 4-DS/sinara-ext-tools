@@ -3,10 +3,16 @@ containerName=jovyan-single-use
  
 if [[ $(docker ps -a --filter "status=created" | grep "$containerName") ]]; then
   
-    echo "Your jovyan single use container is found"; docker start $containerName
+    echo "Your jovyan single use container is created. Start it.."; docker start $containerName
 else
-    if [[ $(docker ps | grep "$containerName") ]]; then
-      echo "Your jovyan single use container is already running"
+    if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
+  
+        echo "Your jovyan single use container is stopped. Start it.."; docker start $containerName
+    else
+        if [[ $(docker ps | grep "$containerName") ]]; then
+        echo "Your jovyan single use container is already running"
+
+        fi
     fi
 fi
 
