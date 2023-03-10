@@ -71,11 +71,11 @@ if [[ ${runMode} == "q" ]]; then
      
       echo "Your jovyan single use container is created";
       # fix permissions
-	docker exec -u 0:0 $containerName chown -R jovyan /tmp
-	docker exec -u 0:0 $containerName chown -R jovyan /data
+	  #docker exec -u 0:0 $containerName chown -R jovyan /tmp
+	  #docker exec -u 0:0 $containerName chown -R jovyan /data
 
       # clean tmp if exists
-	docker exec -u 0:0 $containerName bash -c 'rm -rf /tmp/*'
+	  #docker exec -u 0:0 $containerName bash -c 'rm -rf /tmp/*'
     fi
   fi
 
