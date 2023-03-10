@@ -1,4 +1,4 @@
-# step_template
+# How it works
 
 Prerequisites
 
@@ -18,6 +18,18 @@ bash create.sh
 bash run.sh
 ```
 
+### Go on http://127.0.0.1:8888/lab
+```
+git clone --recursive https://github.com/4-DS/step_template.git
+cd step_template
+```
+
+### Run 'Init_Data.ipynb' to get sample data
+
+### Run 'step.dev.py' in Terminal 
+
+```python step.dev.py```
+
 ## To stop using it for a while, run:
 ```
 bash stop.sh
@@ -33,18 +45,6 @@ bash run.sh
 bash remove.sh
 ```
 
+# Let's create a simple ML pipeline
+
 ![the picture](examples/example.png)
-
-# Developing ML
-
-## Go on http://127.0.0.1:8888/lab
-```
-git clone --recursive https://github.com/4-DS/step_template.git
-cd step_template
-```
-
-## Run Init_Data.ipynb to get sample data
-
-## Run step.dev.py in Terminal 
-
-```python step.dev.py```
