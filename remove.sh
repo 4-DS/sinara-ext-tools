@@ -24,11 +24,10 @@ if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
   else
     if [[ $(docker ps | grep "$containerName") ]]; then
       echo "Your jovyan single use container is already running. Stopping and removing it.."; docker stop $containerName && docker rm -f $containerName
-   
-docker stop $containerName
 
 if [[ ${withVolumes} == "yes" ]]; then
    [[ $(docker volume ls | grep jovyan-data) ]] && echo "Docker volume with jovyan data is found. Removing it.."; docker volume rm -f jovyan-data
    [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found. Removing it.."; docker volume rm -f jovyan-work 
    [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found. Removing it.."; docker volume rm -f jovyan-tmp
 fi
+
