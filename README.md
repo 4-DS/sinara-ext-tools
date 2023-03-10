@@ -1,20 +1,50 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# step_template
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Prerequisites
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+- Docker is up and running
+- Git installed
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+# Deploy an environment for a single use
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```
+git clone --recursive https://github.com/4-DS/step_template.git
+cd step_template
+```
+
+## To make use of it, run:
+```
+bash create.sh
+bash run.sh
+```
+
+## To stop using it for a while, run:
+```
+bash stop.sh
+```
+
+## To continue using it, run:
+```
+bash run.sh
+```
+
+## To remove it, run:
+```
+bash remove.sh
+```
+
+![the picture](examples/example.png)
+
+# Developing ML
+
+## Go on http://127.0.0.1:8888/lab
+```
+git clone --recursive https://github.com/4-DS/step_template.git
+cd step_template
+```
+
+## Run Init_Data.ipynb to get sample data
+
+## Run step.dev.py in Terminal 
+
+```python step.dev.py```
