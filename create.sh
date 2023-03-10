@@ -29,8 +29,6 @@ memLimit="${memLimit:-8g}"
 #cpuRequest="${cpuRequest:-q}"
 cpuLimit="${cpuLimit:-4}"
 
-ьуьщm 512m --memory-reservation=256m
-
 echo "Please, keep in mind, that Sinara will be running in a quick start mode."
 
 echo "After familiarization, we recommend starting in basic mode via 'bash create.sh --runMode b'"
@@ -59,6 +57,9 @@ if [[ ${runMode} == "q" ]]; then
     else
       docker create -p 8888:8888 -p 4040-4060:4040-4060 -v jovyan-work:/home/jovyan/work -v jovyan-data:/data -v jovyan-tmp:/tmp -e DSML_USER=jovyan \
         --name "$containerName" \
+        --memory-reservation=$memRequest \
+        --memory=$memLimit \
+        --cpus=$cpuLimit \
         -w /home/jovyan/work \
         buslovaev/sinara-notebook \
         start-notebook.sh \
@@ -112,6 +113,9 @@ else
     else
       docker create -p 8888:8888 -p 4040-4060:4040-4060 -v $jovyanWorkPath:/home/jovyan/work -v $jovyanDataPath:/data -v $jovyanTmpPath:/tmp -e DSML_USER=jovyan \
         --name "$containerName" \
+        --memory-reservation=$memRequest \
+        --memory=$memLimit \
+        --cpus=$cpuLimit \
         -w /home/jovyan/work \
         buslovaev/sinara-notebook \
         start-notebook.sh \
