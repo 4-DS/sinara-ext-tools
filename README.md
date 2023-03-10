@@ -48,3 +48,10 @@ bash remove.sh
 # Let's create a simple ML pipeline
 
 ![the picture](examples/example.png)
+
+
+See the ready steps step1-4 of pipeline with the name 'pipeline0' at 
+    https://github.com/4-DS/pipeline0-step1.git
+    https://github.com/4-DS/pipeline0-step2.git
+    https://github.com/4-DS/pipeline0-step3.git
+    https://github.com/4-DS/pipeline0-step4.git
