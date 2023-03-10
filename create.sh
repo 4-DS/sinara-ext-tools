@@ -22,6 +22,10 @@ done
 #    read -p "Please, choose a run mod " runMode
 #fi
 
+containerName=jovyan-single-use
+
+instanceName="${instanceName:-$containerName}"
+
 runMode="${runMode:-q}"
 
 memRequest="${memRequest:-4g}"
@@ -39,24 +43,26 @@ echo "For any run mode, the following compute resources are allocated as if we r
 
 echo "You can set them by your demand."
 
-echo "If you want to change the run mode, you need to issue 'remove.sh' in advance."
+echo "You can name your Sinara instance with 'bash create.sh --instanceName your_name' "
 
-containerName=jovyan-single-use
+echo "And then use that parameter in all other tools to control your instance."
+
+echo "If you want to change the run mode, you need to issue 'remove.sh' in advance."
 
 if [[ ${runMode} == "q" ]]; then
    [[ $(docker volume ls | grep jovyan-data) ]] && echo "Docker volume with jovyan data is found" || docker volume create jovyan-data
    [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found" || docker volume create jovyan-work 
    [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found" || docker volume create jovyan-tmp
    
-  if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
+  if [[ $(docker ps -a --filter "status=exited" | grep "$instanceName") ]]; then
   
-    echo "Your jovyan single use container is found"; docker start $containerName
+    echo "Your jovyan single use container is found"; docker start $instanceName
   else
-    if [[ $(docker ps | grep "$containerName") ]]; then
+    if [[ $(docker ps | grep "$instanceName") ]]; then
       echo "Your jovyan single use container is already running"
     else
       docker create -p 8888:8888 -p 4040-4060:4040-4060 -v jovyan-work:/home/jovyan/work -v jovyan-data:/data -v jovyan-tmp:/tmp -e DSML_USER=jovyan \
-        --name "$containerName" \
+        --name "$instanceName" \
         --memory-reservation=$memRequest \
         --memory=$memLimit \
         --cpus=$cpuLimit \
@@ -71,11 +77,11 @@ if [[ ${runMode} == "q" ]]; then
      
       echo "Your jovyan single use container is created";
       # fix permissions
-	  #docker exec -u 0:0 $containerName chown -R jovyan /tmp
-	  #docker exec -u 0:0 $containerName chown -R jovyan /data
+	  #docker exec -u 0:0 $instanceName chown -R jovyan /tmp
+	  #docker exec -u 0:0 $instanceName chown -R jovyan /data
 
       # clean tmp if exists
-	  #docker exec -u 0:0 $containerName bash -c 'rm -rf /tmp/*'
+	  #docker exec -u 0:0 $instanceName bash -c 'rm -rf /tmp/*'
     fi
   fi
 
@@ -104,15 +110,15 @@ else
      exit 1
   fi
  
-  if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
+  if [[ $(docker ps -a --filter "status=exited" | grep "$instanceName") ]]; then
 
-    echo "Your jovyan single use container is found"; docker start $containerName
+    echo "Your jovyan single use container is found"; docker start $instanceName
   else
-    if [[ $(docker ps | grep "$containerName") ]]; then
+    if [[ $(docker ps | grep "$instanceName") ]]; then
       echo "Your jovyan single use container is already running"
     else
       docker create -p 8888:8888 -p 4040-4060:4040-4060 -v $jovyanWorkPath:/home/jovyan/work -v $jovyanDataPath:/data -v $jovyanTmpPath:/tmp -e DSML_USER=jovyan \
-        --name "$containerName" \
+        --name "$instanceName" \
         --memory-reservation=$memRequest \
         --memory=$memLimit \
         --cpus=$cpuLimit \
