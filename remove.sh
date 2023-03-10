@@ -25,7 +25,10 @@ if [[ $(docker ps -a --filter "status=created" | grep "$instanceName") || $(dock
     echo "Your jovyan single use container is found. Removing it.."; docker rm -f $instanceName
 else
     if [[ $(docker ps | grep "$instanceName") ]]; then
-      echo "Your jovyan single use container is already running. Stopping and removing it.."; docker stop $instanceName && docker rm -f $instanceName
+        echo "Your jovyan single use container is already running. Stopping and removing it.."; docker stop $instanceName && docker rm -f $instanceName
+    else
+        echo "Your jovyan single use container is not found. Nothing to remove."
+fi
     fi
 fi
 
