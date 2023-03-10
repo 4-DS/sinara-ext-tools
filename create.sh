@@ -46,7 +46,7 @@ if [[ ${runMode} == "q" ]]; then
     if [[ $(docker ps | grep "$containerName") ]]; then
       echo "Your jovyan single use container is already running"
     else
-      docker run -d -p 8888:8888 -p 4040-4060:4040-4060 -v jovyan-work:/home/jovyan/work -v jovyan-data:/data -v jovyan-tmp:/tmp -e DSML_USER=jovyan \
+      docker create -p 8888:8888 -p 4040-4060:4040-4060 -v jovyan-work:/home/jovyan/work -v jovyan-data:/data -v jovyan-tmp:/tmp -e DSML_USER=jovyan \
         --name "$containerName" \
         -w /home/jovyan/work \
         buslovaev/sinara-notebook \
@@ -99,7 +99,7 @@ else
     if [[ $(docker ps | grep "$containerName") ]]; then
       echo "Your jovyan single use container is already running"
     else
-      docker run -d -p 8888:8888 -p 4040-4060:4040-4060 -v $jovyanWorkPath:/home/jovyan/work -v $jovyanDataPath:/data -v $jovyanTmpPath:/tmp -e DSML_USER=jovyan \
+      docker create -p 8888:8888 -p 4040-4060:4040-4060 -v $jovyanWorkPath:/home/jovyan/work -v $jovyanDataPath:/data -v $jovyanTmpPath:/tmp -e DSML_USER=jovyan \
         --name "$containerName" \
         -w /home/jovyan/work \
         buslovaev/sinara-notebook \
@@ -117,5 +117,5 @@ else
 fi
 
 # End
-echo "Please, follow the URL http://127.0.0.1:8888/lab to access your jovyan single use, by using CTRL key"
+#echo "Please, follow the URL http://127.0.0.1:8888/lab to access your jovyan single use, by using CTRL key"
 
