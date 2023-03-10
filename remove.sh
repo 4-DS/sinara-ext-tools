@@ -18,6 +18,13 @@ echo "Your custom folders will never be deleted"
 
 containerName=jovyan-single-use
 
+if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
+  
+    echo "Your jovyan single use container is found. Removing it.."; docker rm -f $containerName
+  else
+    if [[ $(docker ps | grep "$containerName") ]]; then
+      echo "Your jovyan single use container is already running. Stopping and removing it.."; docker stop $containerName && docker rm -f $containerName
+   
 docker stop $containerName
 
 if [[ ${withVolumes} == "yes" ]]; then
