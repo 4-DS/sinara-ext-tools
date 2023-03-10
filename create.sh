@@ -51,8 +51,8 @@ echo "If you want to change the run mode, you need to issue 'remove.sh' in advan
 
 if [[ ${runMode} == "q" ]]; then
   dataVolume="jovyan-data-${instanceName}"
-  workVolume="jovyan-data-${instanceName}"
-  tmpVolume="jovyan-data-${instanceName}"
+  workVolume="jovyan-work-${instanceName}"
+  tmpVolume="jovyan-tmp-${instanceName}"
 
   [[ $(docker volume ls | grep $dataVolume) ]] && echo "Docker volume with jovyan data is found" || docker volume create $dataVolume
   [[ $(docker volume ls | grep $workVolume) ]] && echo "Docker volume with jovyan work is found" || docker volume create $workVolume 
