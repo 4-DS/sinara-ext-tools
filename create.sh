@@ -50,9 +50,13 @@ echo "And then use that parameter in all other tools to control your instance."
 echo "If you want to change the run mode, you need to issue 'remove.sh' in advance."
 
 if [[ ${runMode} == "q" ]]; then
-   [[ $(docker volume ls | grep jovyan-data) ]] && echo "Docker volume with jovyan data is found" || docker volume create jovyan-data
-   [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found" || docker volume create jovyan-work 
-   [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found" || docker volume create jovyan-tmp
+  dataVolume="jovyan-data-${instanceName}"
+  workVolume="jovyan-data-${instanceName}"
+  tmpVolume="jovyan-data-${instanceName}"
+
+  [[ $(docker volume ls | grep $dataVolume) ]] && echo "Docker volume with jovyan data is found" || docker volume create $dataVolume
+  [[ $(docker volume ls | grep $workVolume) ]] && echo "Docker volume with jovyan work is found" || docker volume create $workVolume 
+  [[ $(docker volume ls | grep $tmpVolume) ]] && echo "Docker volume with jovyan tmp data is found" || docker volume create $tmpVolume
    
   if [[ $(docker ps -a --filter "status=exited" | grep "$instanceName") ]]; then
   
@@ -61,7 +65,7 @@ if [[ ${runMode} == "q" ]]; then
     if [[ $(docker ps | grep "$instanceName") ]]; then
       echo "Your jovyan single use container is already running"
     else
-      docker create -p 8888:8888 -p 4040-4060:4040-4060 -v jovyan-work:/home/jovyan/work -v jovyan-data:/data -v jovyan-tmp:/tmp -e DSML_USER=jovyan \
+      docker create -p 8888:8888 -p 4040-4060:4040-4060 -v $workVolume:/home/jovyan/work -v $dataVolume:/data -v $tmpVolume:/tmp -e DSML_USER=jovyan \
         --name "$instanceName" \
         --memory-reservation=$memRequest \
         --memory=$memLimit \
