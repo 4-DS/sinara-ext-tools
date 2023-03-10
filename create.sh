@@ -36,13 +36,8 @@ containerName=jovyan-single-use
 
 if [[ ${runMode} == "q" ]]; then
    [[ $(docker volume ls | grep jovyan-data) ]] && echo "Docker volume with jovyan data is found" || docker volume create jovyan-data
-   [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found" || docker volume create jovyan-work
-
-   # TODO
-   # need to clean the contents of tmp volume or move to the folders
-   # docker inspect --format '{{ range .Mounts }}{{ .Source}}{{"\n"}}{{end}}' jovyan-single-use | grep jovyan-tmp
- 
-   [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found"; echo "Need to 'docker volume rm jovyan-tmp -f; docker volume create jovyan-tmp'" || docker volume create jovyan-tmp
+   [[ $(docker volume ls | grep jovyan-work) ]] && echo "Docker volume with jovyan work is found" || docker volume create jovyan-work 
+   [[ $(docker volume ls | grep jovyan-tmp) ]] && echo "Docker volume with jovyan tmp data is found" || docker volume create jovyan-tmp
    
   if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
   
