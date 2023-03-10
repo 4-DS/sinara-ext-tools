@@ -10,7 +10,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-runMode="${withVolumes:-no}"
+withVolumes="${withVolumes:-no}"
 
 echo "Please, keep in mind, that 'remove.sh' will not delete any volumes by default."
 echo "To delete volumes use '--withVolumes yes'"
