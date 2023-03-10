@@ -24,11 +24,22 @@ done
 
 runMode="${runMode:-q}"
 
+memRequest="${memRequest:-4g}"
+memLimit="${memLimit:-8g}"
+#cpuRequest="${cpuRequest:-q}"
+cpuLimit="${cpuLimit:-4}"
+
+ьуьщm 512m --memory-reservation=256m
+
 echo "Please, keep in mind, that Sinara will be running in a quick start mode."
 
-echo "After familiarization, we recommend starting in basic mode via 'bash run_sinara.sh --runMode b'"
+echo "After familiarization, we recommend starting in basic mode via 'bash create.sh --runMode b'"
 
 echo "It will start asking for paths for code (work), data, tmp."
+
+echo "For any run mode, the following compute resources are allocated as if we run it via 'bash create.sh --memRequest 4g --memLimit 8g --cpuLimit 4'"
+
+echo "You can set them by your demand."
 
 echo "If you want to change the run mode, you need to issue 'remove.sh' in advance."
 
