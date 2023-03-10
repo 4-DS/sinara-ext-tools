@@ -11,6 +11,7 @@ else
 fi
 
 if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
-      echo "Your jovyan single use container is successfully stopped. "
-
+    echo "Your jovyan single use container is successfully stopped. "
+else
+    echo "Your jovyan single use container is not found."
 fi
