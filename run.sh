@@ -1,7 +1,7 @@
 containerName=jovyan-single-use
 
  
-if [[ $(docker ps -a --filter "status=exited" | grep "$containerName") ]]; then
+if [[ $(docker ps -a --filter "status=created" | grep "$containerName") ]]; then
   
     echo "Your jovyan single use container is found"; docker start $containerName
 else
