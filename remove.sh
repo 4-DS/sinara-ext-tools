@@ -28,7 +28,6 @@ else
         echo "Your jovyan single use container is already running. Stopping and removing it.."; docker stop $instanceName && docker rm -f $instanceName
     else
         echo "Your jovyan single use container is not found. Nothing to remove."
-fi
     fi
 fi
 
