@@ -16,6 +16,15 @@ instanceName="${instanceName:-$containerName}"
 
 read -p "Please, enter ENTITY_PATH for your bentoservice:" bentoservicePath 
 
+bentoservice_dir="$(basename $bentoservicePath)"
+
+rm -rf $bentoservice_dir
+
 docker cp $instanceName:/$bentoservicePath .
 
+cd $bentoservice_dir
+
+unzip model.zip
+rm -f _SUCCESS
+rm -f model.zip
 docker build .
