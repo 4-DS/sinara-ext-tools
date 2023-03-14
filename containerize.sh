@@ -14,7 +14,7 @@ containerName=jovyan-single-use
 
 instanceName="${instanceName:-$containerName}"
 
-read -p "Please, enter ENTITY_PATH for your bentoservice:" bentoservicePath 
+read -p "Please, enter ENTITY_PATH for your bentoservice: " bentoservicePath 
 
 bentoservice_dir="$(basename $bentoservicePath)"
 
