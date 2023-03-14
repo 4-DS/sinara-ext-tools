@@ -8,8 +8,8 @@ Prerequisites
 # Deploy an environment for a single use
 
 ```
-git clone --recursive https://github.com/4-DS/step_template.git
-cd step_template
+git clone --recursive https://github.com/4-DS/sinara-ext-tools.git
+cd sinara-ext-tools
 ```
 
 ## To make use of it, run:
