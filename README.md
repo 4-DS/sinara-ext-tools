@@ -49,6 +49,21 @@ bash remove.sh
 
 ![the picture](examples/example.png)
 
+Once your Sinara single use was deployed, you should create Git repositories for your ML pipeline's steps.
+Each step is based on this template repository https://dev.azure.com/swat-team/mlbox/_git/mlbox_step_template by using README.md
+In each step you must define:
+- inputs
+- outputs
+- custom_inputs
+- custom_outputs
+- tmp_inputs
+- tmp_outputs
+
+Inputs are some previous steps outputs.
+Outputs are some results of a step.
+Inputs/outputs are formed base on a special run name which is 'run-%timestamp%'
+
+Custom inputs/outputs
 
 See the ready steps step1-4 of pipeline with the name 'pipeline0' at 
 1. https://github.com/4-DS/pipeline0-step1.git
