@@ -66,7 +66,27 @@ Inputs/outputs are formed base on a special run name which is 'run-%timestamp%'
 Custom inputs/outputs
 
 See the ready steps step1-4 of pipeline with the name 'pipeline0' at 
-1. https://github.com/4-DS/pipeline0-step1.git
-2. https://github.com/4-DS/pipeline0-step2.git
-3. https://github.com/4-DS/pipeline0-step3.git
-4. https://github.com/4-DS/pipeline0-step4.git
+1. https://github.com/4-DS/pipeline-step1.git
+2. https://github.com/4-DS/pipeline-step2.git
+3. https://github.com/4-DS/pipeline-step3.git
+4. https://github.com/4-DS/pipeline-step4.git
+
+Then you can see design of your ML pipeline by running
+visualize.ipynb
+
+Download it in the root folder, containing all your steps, set parameters and run
+
+
+# Let's build production image with your model 
+
+![the picture](examples/get_bentoservice_path.png)
+
+Please, download the ready ML model example:
+
+1. https://github.com/4-DS/pipeline-model_train.git
+
+Run python step.dev.py
+Then pick up the entity path for your model packed as a bentoservice entity
+Then run bash containerize.sh and set parameters 
+
+Now you get an image with your model ready for intergration with your environment
