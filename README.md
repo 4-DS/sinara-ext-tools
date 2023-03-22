@@ -49,7 +49,7 @@ bash remove.sh
 
 ![the picture](examples/example.png)
 
-Once your Sinara single use was deployed, you should create Git repositories for your ML pipeline's steps.
+Once your "Sinara single use" was deployed, you should create Git repositories for your ML pipeline's steps.
 Each step is based on this template repository https://dev.azure.com/swat-team/mlbox/_git/mlbox_step_template by using README.md
 In each step you must define:
 - inputs
