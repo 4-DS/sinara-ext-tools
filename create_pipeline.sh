@@ -27,8 +27,8 @@ if [[ -z "${step_count:-}" ]]; then
   read -p "Please, enter a number of steps in your pipeline [default=1]: " step_count
 fi
 
-GITHUB_ORG="${organization:-4-DS}"
-GITHUB_TOKEN="${token:-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}"
+GITHUB_ORG="${organization:-}"
+GITHUB_TOKEN="${token:-}"
 PIPELINE_NAME="${pipeline_name:-pipeline}"
 STEP_COUNT="${step_count:-1}"
 
